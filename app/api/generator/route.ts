@@ -3,6 +3,13 @@ import OpenAI from "openai";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_SECRET_KEY });
 
+// code to instruct for specific response
+const instructionMessage = {
+  role: "system",
+  content:
+    "You are a hashtag generator. Write the best hashtags that will rank on social media apps. You must answer only in hashtags for",
+};
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -10,10 +17,10 @@ export async function POST(req: Request) {
 
     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
-      messages,
+      messages: [instructionMessage, ...messages],
     });
 
-    return NextResponse.json(response.choices[0].message.content);
+    return NextResponse.json(response.choices[0].message);
   } catch (error) {
     return new NextResponse("Internal Error", { status: 500 });
   }
