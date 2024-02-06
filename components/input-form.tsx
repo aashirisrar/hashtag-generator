@@ -14,6 +14,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import axios from "axios";
+import { ChatCompletionMessage } from "openai/resources";
 
 const formSchema = z.object({
   input: z.string().min(2, {
@@ -29,8 +32,20 @@ export function InputForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  const [messages, setMessages] = useState<ChatCompletionMessage[]>([]);
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const userMessage = { role: "user", content: values.input };
+      const newMessages = [...messages, userMessage];
+      const response = await axios.post("api/generator", {
+        messages: newMessages,
+      });
+      setMessages((current) => [...current, userMessage, response.data]);
+      form.reset();
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   return (
