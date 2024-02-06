@@ -1,4 +1,5 @@
 import React from "react";
+import { InputForm } from "./input-form";
 
 const Hero = () => {
   return (
@@ -34,7 +35,7 @@ const Hero = () => {
         </svg>
       </a>
       <h1 className="text-center text-3xl font-bold leading-tight tracking-tighter md:text-6xl lg:leading-[1.1] hidden md:block">
-        Check out some examples
+        Best hashtag generator app.
       </h1>
       <span
         className="max-w-[750px] text-center text-lg text-muted-foreground sm:text-xl"
@@ -64,6 +65,7 @@ const Hero = () => {
           Components
         </a>
       </div>
+      <InputForm />
     </section>
   );
 };
