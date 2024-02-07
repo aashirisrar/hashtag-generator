@@ -68,10 +68,15 @@ export function InputForm() {
           <Button type="submit">Submit</Button>
         </form>
       </Form>
-      <div>
-        {messages.map((message) => (
-          <div>{message.content}</div>
-        ))}
+      <div className="mt-4 w-1/2">
+        <div className="mb-2 font-semibold text-2xl">The best tags for:</div>
+        <div>
+          {messages.map((message) => (
+            <div className="px-4 py-3 m-2 rounded-md bg-muted">
+              {message.content}
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
