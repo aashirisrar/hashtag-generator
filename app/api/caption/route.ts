@@ -1,13 +1,11 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
-
-const openai = new OpenAI({ apiKey: process.env.OPENAI_SECRET_KEY });
+import { openai } from "@/lib/openai";
 
 // code to instruct for specific response
 const instructionMessage = {
   role: "system",
   content:
-    "You are a hashtag generator. Write the best hashtags that will rank on social media apps. You must answer only in hashtags for",
+    "You are a caption generator. Write the best caption that will rank on social media apps.",
 };
 
 export async function POST(req: Request) {

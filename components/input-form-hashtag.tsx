@@ -24,7 +24,7 @@ const formSchema = z.object({
   }),
 });
 
-export function InputForm() {
+export function InputFormHashtag() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,7 +38,7 @@ export function InputForm() {
     try {
       const userMessage = { role: "user", content: values.input };
       const newMessages = [...messages, userMessage];
-      const response = await axios.post("api/generator", {
+      const response = await axios.post("api/hashtag", {
         messages: newMessages,
       });
       setMessages((current) => [...current, userMessage, response.data]);
