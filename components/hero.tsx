@@ -1,5 +1,4 @@
 import React from "react";
-import { InputForm } from "./input-form-hashtag";
 
 const Hero = () => {
   return (
@@ -65,7 +64,6 @@ const Hero = () => {
           Components
         </a>
       </div>
-      <InputForm />
     </section>
   );
 };
